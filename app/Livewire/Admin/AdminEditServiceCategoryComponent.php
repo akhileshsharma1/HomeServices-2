@@ -51,7 +51,7 @@ class AdminEditServiceCategoryComponent extends Component
 
         if($this->newimage){
             $this->validate([
-                'newimage' => 'required|mimes:jpeg,png'
+                'newimage' => 'required|mimes:jpeg,jpg,png'
             ]);
         }
 
@@ -61,7 +61,7 @@ class AdminEditServiceCategoryComponent extends Component
         if($this->newimage){
             $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
             $this->newimage->storeAs('categories',$imageName);
-            $scategory->image = $imageName;
+            $scategory->image = $newimage;
         }
         $scategory->save();
         session()->flash('message','Category has been updated successfully');

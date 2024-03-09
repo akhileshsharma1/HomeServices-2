@@ -40,7 +40,6 @@ class AdminEditServiceComponent extends Component
         $this->price = $service->price;
         $this->discount = $service->discount;
         $this->discount_type = $service->discount_type;
-        $this->featured = $service->featured;
         $this->image = $service->image;
         $this->thumbnail = $service->thumbnail;
         $this->description = $service->description;
@@ -67,56 +66,77 @@ class AdminEditServiceComponent extends Component
         ]);
         if($this->newthumbnail){
             $this->validateOnly($fields,[
-                'newthumbnail'=>'required|mimes.jpeg,png',
+                'newthumbnail'=>'required|mimes:jpeg,png',
             ]);
         }
 
         if($this->newimage){
             $this->validateOnly($fields,[
-                'newimage'=>'required|mimes.jpeg,png',
+                'newimage'=>'required|mimes:jpeg,png',
             ]);
         }
     }
 
-    public function updateService()
-{
-    $service = Service::findOrFail($this->service_id);
+    public function updateService(){
+        $this->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'tagline' => 'required',
+            'service_category_id' => 'required',
+            'featured' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'inclusion' => 'required',
+            'exclusion' => 'required'
+        ]);
 
-    // Update service attributes
-    $service->discount = $this->discount;
-    $service->discount_type = $this->discount_type;
-    $service->featured = $this->featured;
-    $service->description = $this->description;
-    $service->inclusion = str_replace("\n", '|', trim($this->inclusion));
-    $service->exclusion = str_replace("\n", '|', trim($this->exclusion));
-
-    // Check if new thumbnail is provided and unlink the old one
-    if ($this->newthumbnail && $this->newthumbnail->isValid()) {
-        if (is_file('assets/images/services/thumbnails/' . $service->thumbnail)) {
-            unlink('assets/images/services/thumbnails/' . $service->thumbnail);
+        if($this->newthumbnail){
+            $this->validate([
+                'newthumbnail'=>'required|mimes:jpeg,png',
+            ]);
         }
-        $imageName = Carbon::now()->timestamp . '.' . $this->newthumbnail->extension();
-        $this->newthumbnail->storeAs('services/thumbnails', $imageName);
-        $service->thumbnail = $imageName;
+
+        if($this->newimage){
+            $this->validate([
+                'newimage'=>'required|mimes:jpeg,png',
+            ]);
+        }
+
+        $service = new Service();
+        $service->name = $this->name;
+        $service->slug = $this->slug;
+        $service->tagline = $this->tagline;
+        $service->service_category_id = $this->service_category_id;
+        $service->price = $this->price;
+        $service->featured = $this->featured;
+        $service->discount = $this->discount;
+        $service->discount_type = $this->discount_type;
+        $service->description = $this->description;
+        $service->inclusion = str_replace("\n", '|', trim($this->inclusion));
+        $service->exclusion = str_replace("\n", '|', trim($this->exclusion));
+
+        if($this->newthumbnail){
+            unlink('images/services/thumbnails'.'/'.$service->thumbnail);
+            $imageName = Carbon::now()->timestamp . '.' . $this->newthumbnail->extension();
+            $this->newthumbnail->storeAs('services/thumbnails',$imageName);
+            $service->thumbnail = $imageName;
+        }    
+
+        if($this->image){
+            unlink('images/services'.'/'.$service->image);
+            $imageName2 = Carbon::now()->timestamp . '.' . $this->newimage->extension();
+            $this->image->storeAs('services',$imageName2);
+            $service->image = $imageName2;
+
+        }
+        
+        $service->save();
+        session()->flash('message','Service has been edited successfully!');
     }
 
-    // Check if new image is provided and unlink the old one
-    if ($this->newimage && $this->newimage->isValid()) {
-        if (is_file('assets/images/services/' . $service->image)) {
-            unlink('assets/images/services/' . $service->image);
-        }
-        $imageName2 = Carbon::now()->timestamp . '.' . $this->newimage->extension();
-        $this->newimage->storeAs('services', $imageName2);
-        $service->image = $imageName2;
+    public function render()
+    {
+        $categories = ServiceCategory::all();
+        return view('livewire.admin.admin-edit-service-component',['categories'=>$categories])->layout('layouts.base');
     }
-
-    $service->save();
-    session()->flash('message', 'Service has been edited successfully!');
-}
-
-public function render()
-{
-    $categories = ServiceCategory::all();
-    return view('livewire.admin.admin-edit-service-component', ['categories' => $categories])->layout('layouts.base');
-}
 }

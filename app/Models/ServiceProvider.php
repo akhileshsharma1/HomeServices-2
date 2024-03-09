@@ -16,6 +16,8 @@ class ServiceProvider extends Model
         return $this->belongsTo(ServiceCategory::class,'service_category_id');
     }
 
+    protected $table = "service_providers";
+
     public function user()
     {
         return $this->belongsTo(User::class,'user_id');

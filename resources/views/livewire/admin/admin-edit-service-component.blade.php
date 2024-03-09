@@ -26,7 +26,7 @@
                                     @if(Session::has('message'))
                                         <div class="alert alert-success" role="alert">{{Session::get('message')}}</div>
                                     @endif
-                                    <form class="form-horizontal" wire:submit.prevent="updateService">
+                                    <form class="form-horizontal" wire:submit.prevent="updateService()">
                                         @csrf
                                         <div class="form-group">
                                             <label for="name" class="control-label col-sm-3">Name:</label>
@@ -77,9 +77,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="slug" class="control-label col-sm-3">Discount:</label>
+                                            <label for="slug" class="control-label col-sm-3">Discount Type:</label>
                                             <div class="col-sm-9">
-                                                <select name="discount" class="form-control" name="discount_type" wire:model="discount_type">
+                                                <select name="discount_type" class="form-control" name="discount_type" wire:model="discount_type">
                                                     <option value="">Select Service Category</option>
                                                     <option value="fixed">Fixed</option>
                                                     <option value="percent">Percent</option>
@@ -90,7 +90,7 @@
                                         <div class="form-group">
                                             <label for="slug" class="control-label col-sm-3">Featured:</label>
                                             <div class="col-sm-9">
-                                                <select name="discount" class="form-control" name="featured" wire:model="featured">
+                                                <select name="featured" class="form-control" name="featured" wire:model="featured">
                                                     <option value="0">No</option>
                                                     <option value="1">Yes</option>
                                                 </select>

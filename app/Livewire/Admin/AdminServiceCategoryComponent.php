@@ -14,7 +14,7 @@ class AdminServiceCategoryComponent extends Component
     public function deleteServiceCategory($id){
         $scategory = ServiceCategory::find($id);
         if($scategory->image){
-            unlink('assets/images/categories'.'/'.$scategory->image);
+            unlink('images/categories'.'/'.$scategory->image);
         }
         $scategory->delete();
         session()->flash('message','Service Category has been deleted successfully!');

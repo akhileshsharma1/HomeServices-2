@@ -21,7 +21,7 @@ class AuthController extends Controller
             $user = Auth::user();
             if ($user->utype === 'ADM') {
                 // If the user is an admin, redirect to the dashboard
-                return redirect()->route('dashboard');
+                return redirect()->route('admin.dashboard');
             } else {
                 // If the user is not an admin, redirect to the home page
                 return redirect('/');

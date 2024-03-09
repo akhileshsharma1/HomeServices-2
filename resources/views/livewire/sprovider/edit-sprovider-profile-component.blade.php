@@ -103,9 +103,9 @@
                     @if($newimage)
                         <img src="{{$newimage->temporaryUrl()}}" width="220">
                     @elseif($image)
-                        <img src="{{asset('assets/images/sproviders')}}/{{$image}}" width="220">
+                        <img src="{{asset('images/sproviders')}}/{{$image}}" width="220">
                     @else
-                        <img src="{{asset('assets/images/default.jpg')}}" width="220">
+                        <img src="{{asset('images/default.jpg')}}" width="220">
                     @endif
                 </div>
                 <div class="form-group">

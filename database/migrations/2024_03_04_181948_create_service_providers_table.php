@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('about')->nullable();
             $table->string('city')->nullable();
-            $table->bigInteger('service_category_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('service_category_id');
             $table->string('service_locations')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

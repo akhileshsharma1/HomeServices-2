@@ -7,7 +7,7 @@
     <div class="containerss">
         <section class="aboutss">
             <div class="about-image">
-                <img src="{{ asset('assets/images/image1.png')}}" alt="logo">
+                <img src="{{ asset('images/image1.png')}}" alt="logo">
             </div>
             <div class="about-content">
                 <h2>"Crafting Comfort, Building Dreams - Your Home, Our Passion."</h2>

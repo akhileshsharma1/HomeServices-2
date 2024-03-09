@@ -16,6 +16,7 @@ class AdminUsersComponent extends Component
         $user->delete();
         session()->flash('message','Service Category has been deleted');
     }
+    
     public function render()
     {
         $users = User::paginate(10);

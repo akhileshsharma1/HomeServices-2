@@ -5,6 +5,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
+    .content_info{
+        margin-top:160px;
+    }
     table{
         margin-top:50px;
     }
@@ -27,9 +30,9 @@
                                         <div class="col-md-6">
                                         {{$category_name}} Service 
                                         </div>
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <a href="{{route('admin.add_service_categories')}}" class="btn1 btn-info pull-right">Add New</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="panel-body">
@@ -46,14 +49,14 @@
                                         <th>Status</th>
                                         <th>Category</th>
                                         <th>Created At</th>
-                                        <th>Action</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($services as $service)
                                     <tr>
                                     <td>{{$service->id}}</td>
-                                    <td><img src="{{ asset('assets/images/services/thumbnails') }}/{{ $service->thumbnail }}" width="60" /></td>
+                                    <td><img src="{{ asset('images/services/thumbnails') }}/{{ $service->thumbnail }}" width="60" /></td>
                                     <td>{{$service->name}}</td>
                                     <td>{{$service->price}}</td>
                                     <td>
@@ -65,8 +68,6 @@
                                     </td>
                                     <td>{{$service->category->name}}</td>
                                     <td>{{$service->created_at}}</td>
-                                    <td><a href="#"><i class="fa fa-edit fa-2x text-info"></i></a>
-                                    <a href="#" style="margin-left:10px;"><i class="fa fa-times fa-2x text-danger"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

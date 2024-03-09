@@ -24,6 +24,8 @@ use App\Livewire\Admin\AdminServicesComponent;
 use App\Livewire\Admin\AdminServiceProviderComponent;
 use App\Livewire\Admin\AdminUsersComponent;
 use App\Livewire\Admin\AdminEditUserComponent;
+use App\Livewire\Customer\CustomerProfileComponent;
+use App\Livewire\Customer\EditCustomerProfile;
 use App\Livewire\Homepage;
 use App\Livewire\HomeComponent;
 use App\Livewire\ContactUsComponent;
@@ -46,7 +48,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/home-page', HomeComponent::class)->name('homepage');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/service-categories',ServiceCategoriesComponent::class)->name('home.service_categories');
 Route::get('/{category_slug}/services', ServicesByCategoryComponent::class)->name('home.services_by_category');
 Route::get('/service/{service_slug}', ServiceDetailsComponent::class)->name('home.services_details');
@@ -66,6 +68,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/customer/dashboard', CustomerDashboardComponent::class)->name('customer.dashboard');
+    Route::get('/customer/profile', CustomerProfileComponent::class)->name('customer.profile');
+    Route::get('/customer/profile/edit', EditCustomerProfile::class)->name('customer.edit_profile');
 });
 
 //For Service Provider
@@ -87,7 +91,7 @@ Route::middleware([
     'verified',
     'authadmin'
 ])->group(function () {
-    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
+    Route::get('/admin/users', AdminDashboardComponent::class)->name('admin.users');
     Route::get('/admin/service-categories',AdminServiceCategoryComponent::class)->name('admin.service_categories');
     Route::get('/admin/service-category/add',AdminAddServiceCategoryComponent::class)->name('admin.add_service_categories');
     Route::get('/admin/service-category/edit/{category_id}',AdminEditServiceCategoryComponent::class)->name('admin.edit_service_category');
@@ -96,7 +100,7 @@ Route::middleware([
     Route::get('/admin/service/add',AdminAddServiceComponent::class)->name('admin.add_service');
     Route::get('/admin/service/edit/{service_slug}',AdminEditServiceComponent::class)->name('admin.edit_service');
     Route::get('/admin/service-providers',AdminEditServiceComponent::class)->name('admin.service_providers');
-    Route::get('/admin/users',AdminUsersComponent::class)->name('admin.users');
+    Route::get('/admin/dashboard',AdminUsersComponent::class)->name('admin.dashboard');
     Route::get('/admin/users/edit/{id}',AdminEditUserComponent::class)->name('admin.edit_users');
 });
 

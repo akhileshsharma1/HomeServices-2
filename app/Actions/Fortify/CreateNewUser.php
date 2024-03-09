@@ -43,6 +43,13 @@ class CreateNewUser implements CreatesNewUsers
             ]);
         }
 
+        if($registeras === 'CST')
+        {
+            Customer::create([
+                'user_id' => $user->id
+            ]);
+        }
+
         return $user;
     }
 }

@@ -15,6 +15,12 @@
             color: #fff;
         }
 
+        .profile1{
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
         .container_5 {
             margin-top:50px;
             padding: 40px;
@@ -54,16 +60,16 @@
             <div class="paddings-mini">
                 <div class="container_5">
                     <div class="row PortfolioContainer">
-                        <div class="col-md-12 profile1">
+                        <div class="profile1">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-6">
                                             All Users
                                         </div>
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <a href="{{route('admin.add_service_categories')}}" class="btn1 btn-info pull-right">Add New</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="panel-body">

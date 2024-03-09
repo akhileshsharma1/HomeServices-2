@@ -62,7 +62,13 @@
             display: flex;
             background-color:#fff;
         }
-        
+        .form-popup.error {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, opacity 0.1s;
+        }
+
     </style>
 </head>
 <body>
@@ -73,29 +79,32 @@
         <nav class="navbar">
             <span class="menu-btn material-symbols-rounded">menu</span>
             <a href="#" class="logo">
-                <img src="{{ asset('assets/images/logo.png')}}" alt="logo">
+                <img src="{{ asset('images/logo.png')}}" alt="logo">
                 <h2>Online Home Services</h2>
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="{{route('homepage')}}">Home</a></li>
                 <li><a href="{{route('home.service_categories')}}">Services</a></li>
-                <li><a href="#">Appliances</a></li>
+                <!-- <li><a href="#">Appliances</a></li> -->
                 <li><a href="{{route('home.about_us')}}">About Us</a></li>
                 <li><a href="{{route('home.contact_us')}}">Contact Us</a></li>
                 @livewire('location-component') 
             </ul>
             
             <div class="blur-bg-overlay"></div>
-    <div class="form-popup">
+    <div class="form-popup @if ($errors->has('email') || $errors->has('password')) error @endif">
         <span class="close-btn material-symbols-rounded">close</span>
         <div class="form-box login">
             <div class="form-details">
                 <h2>Welcome Back</h2>
                 <p>Please log in using your personal information to stay connected with us.</p>
             </div>  
-            <div class="form-content">
+                        <div class="form-content">
                 <h2>LOGIN</h2>
+                @if ($errors->has('email') || $errors->has('password'))
+                        <span class="error">{{ $errors->first('email') ?: $errors->first('password') }}</span>
+                    @endif
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="input-field">
@@ -106,6 +115,7 @@
                         <input type="password" name="password" required>
                         <label>Password</label>
                     </div>
+                  
                     <a href="#" class="forgot-pass">Forgot Password?</a>
                     <button type="submit">Log In</button>
                 </form>
@@ -177,19 +187,21 @@
                   <div class = "Account_admin">
 
 
-                      <div class="login-btn" style="list-style: none;">My Account(Admin)
+                      <div class="login-btn" style="list-style: none;" id = "akhilesh">My Account(Admin)
                     </div>
                       
                         
+                        <div class="options">
 
-                            <ul class="drop-down one-column" style="list-style: none; position:absolute; top:70%">
+                            <ul class="drop-down one-column hover-fade" style="list-style: none; position:absolute; top:70% display:block;">
                                 <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                                 <li><a href="{{route('admin.service_categories')}}">Service Categories</a></li>
                                 <li><a href="{{route('admin.all_services')}}">All Services</a></li>
-                                <li><a href="{{route('admin.users')}}">Users</a></li>
-                                <li><a href="{{ route('admin.service_providers')}}">All Service Providers</a></li>
+                                <!-- <li><a href="{{route('admin.users')}}">Users</a></li> -->
+                                <!-- <li><a href="{{ route('admin.service_providers')}}">All Service Providers</a></li> -->
                                 <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                             </ul>
+                        </div>
                             
                 
                 </div>
@@ -201,9 +213,9 @@
                     <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                   </ul>
                 @else   
-                <li class="login-btn" style="list-style: none;">My Account(Customer)</li>
+                <li class="login-btn" style="list-style: none; ">My Account(Customer)</li>
                   <ul class="drop-down one-column hover-fade" style="list-style: none;">
-                    <li><a href="{{route('customer.dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{route('customer.profile')}}">Profile</a></li>
                     <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                   </ul>
             @endif

@@ -20,20 +20,30 @@ margin:85px;
         footer{
             margin-top:500px;
         }
+        .profile1{
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .col98{
+            width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+        }
 </style>
 <section class="content-central">
         <div class="content_info">
             <div class="paddings-mini">
                 <div class="container_5">
                     <div class="row PortfolioContainer">
-                        <div class="col-md-12 profile1">
+                        <div class="profile1">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col98">
                                             All Service Categories
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col98">
                                             <a href="{{route('admin.add_service')}}" class="btn1 btn-info pull-right">Add New</a>
                                         </div>
                                     </div>
@@ -60,7 +70,7 @@ margin:85px;
                                     @foreach($services as $service)
                                     <tr>
                                     <td>{{$service->id}}</td>
-                                    <td><img src="{{ asset('assets/images/services/thumbnails') }}/{{ $service->thumbnail }}" width="60" /></td>
+                                    <td><img src="{{ asset('images/services/thumbnails') }}/{{ $service->thumbnail }}" width="60" /></td>
                                     <td>{{$service->name}}</td>
                                     <td>{{$service->price}}</td>
                                     <td>

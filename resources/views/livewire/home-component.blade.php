@@ -12,14 +12,35 @@
                  <a href="{{ route('login') }}" target="_blank"> <button type="button"><span class="web2"></span id="join">JOIN US</button></a>
         </div>
         <div class="frstimage">
-            <img src="{{ asset('assets/images/logo.png')}}" alt="logo">
+            <!-- <img src="{{ asset('assets/images/homeservice2.png')}}" alt="logo"> -->
+                <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="{{ asset('images/homeservice1.png')}}">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="{{ asset('images/homeservice2.png')}}">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="{{ asset('images/homeservice3.png')}}">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="{{ asset('images/homeservice4.png')}}">
+            </div>
+            <!-- Add more images here -->
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
          </div>
          <div class="col-md-12">
          <ul class="tooltip-hover" id="sponsors">
         @foreach($scategories as $scategory)
                 <li data-toggle="tooltip" data-original-title="{{$scategory->name}}">
                     <a href="{{route('home.services_by_category',['category_slug'=>$scategory->slug])}}">
-                        <img src="{{asset('assets/images/categories')}}/{{$scategory->image}}" alt="{{$scategory->name}}">
+                        <img src="{{asset('images/categories')}}/{{$scategory->image}}" alt="{{$scategory->name}}">
                     </a>
                 </li>
         @endforeach
@@ -31,7 +52,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3 hsgrids" style="padding-right:5px;padding-left:5px;">\
             <a href="{{route('home.service_details',['service_slug'=>$service->slug])}}" class="g-list"></a>
             <div class="img-hover">
-                <img src="{{asset('assets/images/services/thumbnails')}}/{{$service->thumbnail}}" alt="{{$service->name}}" class="img-responsive">
+                <img src="{{asset('images/services/thumbnails')}}/{{$service->thumbnail}}" alt="{{$service->name}}" class="img-responsive">
             </div>
             <div class="info-gallery">
                 <h3>{{$service->name}}</h3>

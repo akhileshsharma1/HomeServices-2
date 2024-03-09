@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
 <div class="first1">
         <div class="first2">
             <h1>Welcome to <span class="web">GharSajilo,</span> <br> a <span class="web">Home Service Platform</span></h1>
@@ -15,4 +15,4 @@
             <img src="{{asset('assets/images/logo.png')}}">
          </div>
     </div>
-</div>
+</div> -->

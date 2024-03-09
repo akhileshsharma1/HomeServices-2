@@ -28,33 +28,33 @@
                                         
                                     @endif
                                    <form class="form-horizontal" wire:submit.prevent="createNewCategory">
-    @csrf
-    <div class="form-group">
-        <label for="name" class="control-label col-sm-3">Category Name:</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" wire:model="name" wire:keyup="generateSlug" />
-            @error('name') <p class="text-danger">{{$message}}</p> @enderror
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="slug" class="control-label col-sm-3">Category Slug:</label>
-        <div class="col-sm-9">
-            <input type="text" class="form-control" name="slug" wire:model="slug" />
-            @error('slug') <p class="text-danger">{{$message}}</p> @enderror
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="image" class="control-label col-sm-3">Category Image:</label>
-        <div class="col-sm-9">
-            <input type="file" class="form-control-file" name="image" wire:model="image" />
-            @error('image') <p class="text-danger">{{$message}}</p> @enderror
-            @if($image)
-            <img src="{{$image->temporaryUrl()}}" width="60" />
-            @endif
-        </div>
-    </div>
-    <button type="submit" class="btn1 btn-success pull-right">Add category</button>
-</form>
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="name" class="control-label col-sm-3">Category Name:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="name" wire:model="name" wire:keyup="generateSlug" />
+                                                @error('name') <p class="text-danger">{{$message}}</p> @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="slug" class="control-label col-sm-3">Category Slug:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="slug" wire:model="slug" />
+                                                @error('slug') <p class="text-danger">{{$message}}</p> @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="image" class="control-label col-sm-3">Category Image:</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control-file" name="image" wire:model="image" />
+                                                @error('image') <p class="text-danger">{{$message}}</p> @enderror
+                                                @if($image)
+                                                <img src="{{$image->temporaryUrl()}}" width="60" />
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn1 btn-success pull-right">Add category</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

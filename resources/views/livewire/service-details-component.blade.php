@@ -99,7 +99,7 @@
                                         <div class="col-md-12">
                                             <div id="single-carousel">
                                                 <div class="img-hover">
-                                                    <img src="{{asset('assets/images/services')}}/{{$service->image}}" alt="{{$service->name}}"  class="img-responsive">
+                                                    <img src="{{asset('images/services')}}/{{$service->image}}" alt="{{$service->name}}"  class="img-responsive">
                                                 </div>
                                             </div>
                                         </div>
@@ -174,7 +174,7 @@
                                         style="max-width: 360px">
                                         <a href="{{route('home.services_details',['service_slug'=>$r_service->slug])}}">
                                             <div class="img-hover">
-                                                <img src="{{asset('assets/images/services/thumbnails')}}/{{$r_service->thumbnail}}" alt="{{$r_service->name}}"
+                                                <img src="{{asset('images/services/thumbnails')}}/{{$r_service->thumbnail}}" alt="{{$r_service->name}}"
                                                     class="img-responsive">
                                             </div>
                                             <div class="info-gallery">

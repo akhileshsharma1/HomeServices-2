@@ -26,8 +26,8 @@
                 <a href="{{ route('home.change_location') }}">Maiti,Maitidevi</a>
             @endif
         </li>
-        <li class="live-chat-item">
+        <!-- <li class="live-chat-item">
             <i class="fa fa-comment"></i>Live Chat
-        </li>
+        </li> -->
     </ul>
 </div>

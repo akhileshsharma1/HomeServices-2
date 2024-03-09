@@ -1,9 +1,13 @@
+<div>
 <style>
-    header{
+    .header1{
         display:none;
     }
-    footer{
+    .footer{
         display:none;
+    }
+    .header h1{
+        color:black;
     }
 </style>
 
@@ -56,7 +60,7 @@
             </div>
         </div>
         <main>
-            <div class="cards">
+            <!-- <div class="cards">
                 <div class="card-single">
                     <div>
                         <h1>54</h1>
@@ -84,21 +88,13 @@
                         <span class="las la-clipboard"></span>
                     </div>
                 </div>
+            </div> -->
+            <div id="dashsboardTable">
+                @include('livewire.admin.admin-users-component')
             </div>
-            <table id="dashboardTable">
-                <tr>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                </tr>
-                <tr>
-                  <td>Peter</td>
-                  <td>Griffin</td>
-                </tr>
-                <tr>
-                  <td>Lois</td>
-                  <td>Griffin</td>
-                </tr>
-              </table>
+            <div class="dashboard">
+                @include('livewire.admin.admin-users-component')
+            </div>
         </main>
     </div>
     
@@ -107,8 +103,15 @@
             document.getElementById("dashboardTable").style.display = "table";
         }
 
+        // function showTable1() {
+        //     document.getElementById("dashboard").style.display = "table";
+        // }
+
+
         function hideTable() {
             document.getElementById("dashboardTable").style.display = "none";
 };
     </script>
+</div>
+
 </div>

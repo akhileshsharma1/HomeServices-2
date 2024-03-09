@@ -32,7 +32,7 @@
                             style="padding-right: 5px;padding-left: 5px;">
                             <a class="g-list" href="{{route('home.services_details',['service_slug'=>$service->slug])}}">
                                 <div class="img-hover">
-                                    <img src="{{ asset('assets/images/services/thumbnails/' . $service->thumbnail) }}"
+                                    <img src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}"
                                         alt="{{ $scategory->name }}" class="img-responsive">
                                 </div>
                                 <div class="info-gallery">

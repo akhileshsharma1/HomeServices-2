@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ServiceProvider;
+use App\Models\Customer;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -40,6 +41,13 @@ class RegisterController extends Controller
             $serviceProvider->user_id = $user->id;
             // Populate other fields as needed
             $serviceProvider->save();
+        }
+
+        if ($user->utype === 'CST') {
+            $customer = new Customer();
+            $customer->user_id = $user->id;
+            // Populate other fields as needed
+            $customer->save();
         }
 
         // Redirect the user after registration

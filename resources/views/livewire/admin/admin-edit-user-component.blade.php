@@ -18,7 +18,7 @@
                                            Edit Service Category
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{route('admin.service_categories')}}" class="btn1 btn-info pull-right">All categories</a>
+                                            <a href="{{route('admin.users')}}" class="btn1 btn-info pull-right">All users</a>
                                         </div>
                                     </div>
                                 </div>
