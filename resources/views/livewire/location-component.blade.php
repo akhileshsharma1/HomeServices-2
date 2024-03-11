@@ -8,22 +8,22 @@
 }
 
 .location-item {
-    margin-right: 20px; /* Adjust spacing between items */
+    margin-right: 20px; 
 }
 
 .live-chat-item {
-    margin-left: 20px; /* Adjust spacing between items */
-    padding-right: 10px; /* Add padding to align live chat icon with text */
-    border-right: 1px solid #ccc; /* Add border to separate location and live chat */
+    margin-left: 20px; 
+    padding-right: 10px; 
+    border-right: 1px solid #ccc; 
 }
 
     </style>
     <ul class="header-list">
         <li class="location-item">
-            @if(Session::has('city'))
-                <a href="{{ route('home.change_location') }}"><i class="fa fa-map-marker"></i>{{ Session::get('city') }}, {{ Session::get('state') }}</a>
+            @if(Session::has('country'))
+                <a href="{{ route('home.change_location') }}"><i class="fa fa-map-marker"></i>{{ Session::get('city') }}, {{ Session::get('country') }}</a>
             @else
-                <a href="{{ route('home.change_location') }}">Maiti,Maitidevi</a>
+                <a href="{{ route('home.change_location') }}">Location</a>
             @endif
         </li>
         <!-- <li class="live-chat-item">

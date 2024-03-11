@@ -33,15 +33,14 @@
                             <a class="g-list" href="{{route('home.services_details',['service_slug'=>$service->slug])}}">
                                 <div class="img-hover">
                                     <img src="{{ asset('images/services/thumbnails/' . $service->thumbnail) }}"
-                                        alt="{{ $scategory->name }}" class="img-responsive">
+                                        alt="{{ $scategory->name }}" class="img-responsive" style=" max-height: 243px;">
                                 </div>
                                 <div class="info-gallery">
                                     <h3>{{ $service->name }}</h3>
                                     <hr class="separator">
                                     <p>{{ $service->tagline }}</p> 
-                                    <div class="content-btn"><a href="service-details/ac-repair.html"
-                                            class="btn1 btn-primary">Book Now</a></div>
-                                    <div class="price"><span>&#36;</span><b>From</b>{{ $service->price }}</div> 
+                                    <div class="content-btn"></div>
+                                    <div class="price"></span><b>From </b> Rs {{ $service->price }}</div> 
                             </a>
                         </div>
                         @endforeach

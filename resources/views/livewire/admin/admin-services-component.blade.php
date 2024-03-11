@@ -60,7 +60,6 @@ margin:85px;
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Status</th>
-                                        <th>Featured</th>
                                         <th>Category</th>
                                         <th>Created At</th>
                                         <th>Action</th>
@@ -80,13 +79,7 @@ margin:85px;
                                             Inactive
                                         @endif
                                     </td>
-                                   <td>
-                                   @if($service->featured)
-                                    Yes
-                                    @else
-                                    No
-                                    @endif
-                                   </td>
+                                   
                                     <td>{{$service->category->name}}</td>
                                     <td>{{$service->created_at}}</td>
                                     <td>

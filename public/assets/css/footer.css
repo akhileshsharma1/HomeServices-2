@@ -31,7 +31,7 @@ footer{
 }
 
 .footer {
-    position: fixed;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -43,7 +43,7 @@ footer{
 
 
 .footer-col{
-    width: 25%;
+    width: 22%;
     padding: 0 15px;
 }
 
@@ -59,7 +59,7 @@ footer{
 .footer-col h4::before{
     content: '';
     position: absolute;
-    left: 0;
+    left: 84px;
     bottom: -10px;
     background-color: #e91e63;
     height: 2px;

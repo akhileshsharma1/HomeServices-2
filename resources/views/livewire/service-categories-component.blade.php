@@ -19,7 +19,7 @@
     border: 1px solid #575756;
     transition: all 250ms ease-in-out;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
+    /* transform-style: preserve-3d; */
 }
 
 .search__input::placeholder {
@@ -37,6 +37,21 @@
     border-radius: 0;
     background-position: 100% center;
 }
+.search-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
 
 </style>
 <div>
@@ -46,11 +61,11 @@
             @csrf
         <div class="search__container">
           <input class="search__input typeahead" type="text" name="q" id="q" placeholder="Search Services  ">
-          <input type="submit" name="submit" value="Search">
+          <input type="submit" name="submit" value="Search" class="search-btn">
         </div> 
         </form>
     </div>     
-        <h1>Our Services</h1>
+        <h1 style="color:#195c13;">Our Services</h1>
         <div class="row">
             @foreach($scategories as $scategory)
             <div class="service">

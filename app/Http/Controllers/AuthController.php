@@ -22,7 +22,11 @@ class AuthController extends Controller
             if ($user->utype === 'ADM') {
                 // If the user is an admin, redirect to the dashboard
                 return redirect()->route('admin.dashboard');
-            } else {
+            } elseif($user->utype === 'SVP') {
+                return redirect()->route('sprovider.dashboard');
+            } elseif($user->utype === 'CST') {
+                return redirect()->route('customer.dashboard');
+        }else {
                 // If the user is not an admin, redirect to the home page
                 return redirect('/');
             }

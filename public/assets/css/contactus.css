@@ -14,12 +14,12 @@
 .contactss .contentss h2{
     font-size: 50px;
     font-weight: 500;
-    color: #000000;
+    color: #195c13;
 }
 .contactss .contentss p{
     font-size: 15px;
     font-weight: 500;
-    color: #e8daf5;
+    color: #000000;
 }
 .containerss{
     width: 100%;
@@ -52,7 +52,7 @@
 display: flex;
 margin-left: 20px;
 font-size: 16px;
-color: #fff;
+color: #195c13;
 flex-direction: column;
 font-weight: 300;
 }
@@ -128,7 +128,6 @@ font-weight: 300;
   transition: all 0.25s;
   border-style: solid;
   border-width: 0;
-  content:"";
   height: 24px;
   position: absolute;
   width: 24px;

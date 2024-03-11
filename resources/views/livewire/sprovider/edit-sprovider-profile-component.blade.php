@@ -132,7 +132,7 @@
                     <label for="service_locations" class="control-label col-md-3">Service Locations:</label>
                     <input type="text" class="form-control" name="service_locations" wire:model="service_locations" />
                 </div>
-                <button type="submit" class="btn btn-success pull-right">Edit Service</button>
+                <button type="submit" class="btn btn-success pull-right">Edit Profile</button>
                </form>
                </div>
             </div>

@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('assets/css/admindashboard.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/admindashboard.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Material Symbols Rounded' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
+    <script src="{{ asset('assets/js/script1.js') }}" defer></script>
+    <script src="{{ asset('assets/js/script2.js') }}" defer></script>
     <title>Document</title>
 </head>
 <body>
@@ -15,20 +21,24 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                <a href="#" class="active" onclick="showTable();"><span class="las la-igloo"></span>
+                <a href="#" class="active"><span class="las la-igloo"></span>
                     <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="#" onclick="hideTable()"><span class="las la-users"></span>
-                    <span>Customers</span></a>
+                    <a href="#"><span class="las la-users"></span>
+                    <span>Service Category</span></a>
                 </li>
                 <li>
-                    <a href="#" onclick="hideTable()"><span class="las la-broom"></span>
+                    <a href="#"><span class="las la-broom"></span>
                     <span>Services</span></a>
                 </li>
                 <li>
-                    <a href="#" onclick="hideTable()"><span class="las la-wallet"></span>
-                    <span>Service Providers</span></a>
+                    <a href="#"><span class="las la-wallet"></span>
+                    <span>Bookings</span></a>
+                </li>
+                <li>
+                    <a href="#">
+                    <span>Logout</span></a>
                 </li>
             </ul>
         </div>
@@ -48,59 +58,37 @@
             </div>
 
             <div class="user-wrapper">
-                <img src="{{asset('assets/images/logo.png')}}" width="40px" height="30px" alt="">
+                <img src="{{ asset('assets/images/logo.png') }}" width="40px" height="30px" alt="">
                 <div>
                     <h4>Akhilesh Sharma</h4>
                     <small>Super Admin</small>
                 </div>
             </div>
         </div>
-        <main>
-            <div class="cards">
-                <div class="card-single">
-                    <div>
-                        <h1>54</h1>
-                        <span>Customers</span>
-                    </div>
-                    <div>
-                        <span class="las la-users"></span>
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div>
-                        <h1>54</h1>
-                        <span>Service Providers</span>
-                    </div>
-                    <div>
-                        <span class="las la-users"></span>
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div>
-                        <h1>54</h1>
-                        <span>Services</span>
-                    </div>
-                    <div>
-                        <span class="las la-clipboard"></span>
-                    </div>
-                </div>
-            </div>
-            <table id="dashboardTable">
-            @livewire('admin/AdminUsersComponent')
-              </table>
-        </main>
+        <div class="dashboard"></div>
     </div>
-    
-    <script>
-        function showTable() {
-            document.getElementById("dashboardTable").style.display = "table";
-        }
-
-        function hideTable() {
-            document.getElementById("dashboardTable").style.display = "none";
-};
-    </script>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all sidebar links
+        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
 
+        // Loop through each link
+        sidebarLinks.forEach(link => {
+            // Add click event listener
+            link.addEventListener('click', function(event) {
+                // Prevent default link behavior
+                event.preventDefault();
+
+                // Get the href attribute of the clicked link
+                const href = this.getAttribute('href');
+
+                // Redirect the user to the href location
+                window.location.href = href;
+            });
+        });
+    });
+</script>
+</script>
 </body>
 </html>

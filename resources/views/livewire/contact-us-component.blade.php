@@ -1,26 +1,3 @@
-<script>
-    const validateEmail = (email) => {
-  return email.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-};
-
-const validate = () => {
-  const $result = $('#result');
-  const email = $('#email').val();
-  $result.text('');
-
-  if(validateEmail(email)){
-    $result.text(email + ' is valid.');
-    $result.css('color', 'green');
-  } else{
-    $result.text(email + ' is invalid.');
-    $result.css('color', 'red');
-  }
-  return false;
-}
-$('#email').on('input', validate);
-</script>
 <div>
 <div class="contactss" id="contact">
             <div class="contentss">
@@ -59,7 +36,7 @@ $('#email').on('input', validate);
                     </ul>
                 </div>
                 <div class="contactForm">
-                    <form action="https://api.web3forms.com/submit" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return validate()">
                         <h2>Send Message</h2>
                         <input type="hidden" name="access_key" value="82ca395f-d21c-413d-8639-90c10b08b656">
                         <div class="inputBox">
@@ -69,6 +46,7 @@ $('#email').on('input', validate);
                         <div class="inputBox">
                             <input type="text" name="email" id="email" required="required">
                             <span>Email</span>
+                            <p id="result"></p>
                         </div>
                         <div class="inputBox">
                             <textarea required="required" name="message"></textarea>
@@ -81,4 +59,33 @@ $('#email').on('input', validate);
                 </div>
             </div>
         </div>
+    <script>
+    const validateEmail = (email) => {
+        return email.match(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+
+    const validate = () => {
+        const $result = $('#result');
+        const email = $('#email').val();
+        $result.text('');
+
+        if (validateEmail(email)) {
+            $result.text(email + ' is valid.');
+            $result.css('color', 'green');
+            return true; 
+        } else {
+            $result.text(email + ' is invalid.');
+            $result.css('color', 'red');
+            return false; 
+        }
+    }
+
+    $(document).on('submit', 'form', function(e) {
+        if (!validate()) {
+            e.preventDefault(); 
+        }
+    });
+</script>
 </div>

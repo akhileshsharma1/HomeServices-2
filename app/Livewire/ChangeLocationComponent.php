@@ -3,24 +3,25 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Livewire\LocationComponent; 
 
 class ChangeLocationComponent extends Component
 {
-    public $streetnumber;
-    public $routes;
+    public $street;
     public $city;
-    public $state;
     public $country;
+    public $longitude;
+    public $latitude;
 
     public function changeLocation()
     {
-        session()->put('streetnumber',$this->streetnumber);
-        session()->put('roues',$this->routes);
-        session()->put('city',$this->city);
-        session()->put('state',$this->state);
-        session()->put('country',$this->country);
-        session()->flash('message','Location has been changed');
-        $this->emitTo('location-component','refreshComponent');
+        session()->put('street', $this->street);
+        session()->put('city', $this->city);
+        session()->put('country', $this->country);
+        session()->put('longitude', $this->longitude);
+        session()->put('latitude', $this->latitude);
+        session()->flash('message', 'Location has been changed');
+        $this->emitTo(LocationComponent::class, 'refreshComponent');
     }
 
     public function render()

@@ -9,34 +9,34 @@
                     <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.gmail.com/"><i class="fab fa-envelope"></i></a>
                 </div>
-                 <a href="{{ route('login') }}" target="_blank"> <button type="button"><span class="web2"></span id="join">JOIN US</button></a>
+                 <a href="{{ route('login') }}"> <button type="button"><span class="web2"></span id="join">JOIN US</button></a>
         </div>
         <div class="frstimage">
-            <!-- <img src="{{ asset('assets/images/homeservice2.png')}}" alt="logo"> -->
-                <div class="slideshow-container">
-            <div class="mySlides fade">
-                <img src="{{ asset('images/homeservice1.png')}}">
-            </div>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="{{ asset('images/homeservice1.png')}}">
+                </div>
 
-            <div class="mySlides fade">
-                <img src="{{ asset('images/homeservice2.png')}}">
-            </div>
+                <div class="mySlides fade">
+                    <img src="{{ asset('images/homeservice2.png')}}">
+                </div>
 
-            <div class="mySlides fade">
-                <img src="{{ asset('images/homeservice3.png')}}">
-            </div>
+                <div class="mySlides fade">
+                    <img src="{{ asset('images/homeservice3.png')}}">
+                </div>
 
-            <div class="mySlides fade">
-                <img src="{{ asset('images/homeservice4.png')}}">
-            </div>
-            <!-- Add more images here -->
+                <div class="mySlides fade">
+                    <img src="{{ asset('images/homeservice4.png')}}">
+                </div>
+                <!-- Add more images here -->
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-         </div>
+                <!-- Remove previous and next buttons -->
+                <!--<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>-->
+            </div>
+        </div>
          <div class="col-md-12">
-         <ul class="tooltip-hover" id="sponsors">
+         <ul class="tooltip-hover" id="sponsors" style="margin: 45px 100px;">
         @foreach($scategories as $scategory)
                 <li data-toggle="tooltip" data-original-title="{{$scategory->name}}">
                     <a href="{{route('home.services_by_category',['category_slug'=>$scategory->slug])}}">

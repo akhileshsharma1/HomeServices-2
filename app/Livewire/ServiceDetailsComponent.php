@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
+
 
 class ServiceDetailsComponent extends Component
 {
@@ -30,7 +32,25 @@ class ServiceDetailsComponent extends Component
                             ->inRandomOrder()
                             ->first();
 
+        
+
         return view('livewire.service-details-component', ['service' => $service, 'r_service' => $r_service])
             ->layout('layouts.base');
     }
+        // public function showBookingForm()
+        //                         {
+        //                             if (Auth::check()) {
+        //                                 return view('livewire.booking-form')->layout('layouts.base');
+        //                                                         } else {
+        //                                 return redirect()->route('login')->with('error', 'Please log in to continue booking.');
+        //                             }
+        //                         }
+    //     public function showBookingForm()
+    // {
+    //     if (Auth::check()) {
+    //         return redirect()->route('booking.form'); // Assuming 'booking.form' is the route name for your booking form
+    //     } else {
+    //         return redirect()->route('login')->with('error', 'Please log in to continue booking.');
+    //     }
+    // }
 }

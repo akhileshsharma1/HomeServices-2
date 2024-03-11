@@ -23,7 +23,9 @@ use App\Livewire\Admin\AdminEditServiceComponent;
 use App\Livewire\Admin\AdminServicesComponent;
 use App\Livewire\Admin\AdminServiceProviderComponent;
 use App\Livewire\Admin\AdminUsersComponent;
+use App\Livewire\Admin\AdminBookingsComponent;
 use App\Livewire\Admin\AdminEditUserComponent;
+use App\Livewire\Admin\AdminEditBookingsComponent;
 use App\Livewire\Customer\CustomerProfileComponent;
 use App\Livewire\Customer\EditCustomerProfile;
 use App\Livewire\Homepage;
@@ -31,6 +33,14 @@ use App\Livewire\HomeComponent;
 use App\Livewire\ContactUsComponent;
 use App\Livewire\AboutUsComponent;
 use App\Livewire\ChangeLocationComponent;
+use App\Livewire\BookServiceComponent;
+use App\Livewire\BookingForm;
+
+// use App\Http\Controllers\ServiceController;
+
+// Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+// Route::post('/services/{service}/book', [ServiceController::class, 'book'])->name('services.book');
+// Route::post('/services/{service}/accept', [ServiceController::class, 'acceptBooking'])->name('services.accept');
 
 
 /*
@@ -43,6 +53,11 @@ use App\Livewire\ChangeLocationComponent;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers\BookingController;
+
+// Route::get('/booking', BookingForm::class)->name('booking.form');
+Route::post('/booking', [BookingController::class, 'bookService'])->name('booking.book');
+
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
@@ -55,11 +70,15 @@ Route::get('/service/{service_slug}', ServiceDetailsComponent::class)->name('hom
 Route::get('/contactus', ContactUsComponent::class)->name('home.contact_us');
 Route::get('/aboutus', AboutUsComponent::class)->name('home.about_us');
 
+Route::get('/booking-form', BookingForm::class)->name('home.booking-form');
+
+
 Route::get('/autocomplete',[SearchController::class,'autocomplete'])->name('autocomplete');
 Route::post('/search',[SearchController::class,'searchService'])->name('searchService');
 
 Route::get('/change-location',ChangeLocationComponent::class)->name('home.change_location');
 
+Route::get('/book-service', BookServiceComponent::class)->name('book-service');
 //For Customer
 Route::get('/', HomeComponent::class)->name('home');
 Route::middleware([
@@ -102,5 +121,7 @@ Route::middleware([
     Route::get('/admin/service-providers',AdminEditServiceComponent::class)->name('admin.service_providers');
     Route::get('/admin/dashboard',AdminUsersComponent::class)->name('admin.dashboard');
     Route::get('/admin/users/edit/{id}',AdminEditUserComponent::class)->name('admin.edit_users');
+    Route::get('/admin/bookings',AdminBookingsComponent::class)->name('admin.bookings');
+    // Route::get('/admin/bookings/edit',AdminEditBookingsComponent::class)->name('admin.edit_bookings');
 });
 

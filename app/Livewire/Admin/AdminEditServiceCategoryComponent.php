@@ -61,7 +61,7 @@ class AdminEditServiceCategoryComponent extends Component
         if($this->newimage){
             $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();
             $this->newimage->storeAs('categories',$imageName);
-            $scategory->image = $newimage;
+            $scategory->image = $imageName;
         }
         $scategory->save();
         session()->flash('message','Category has been updated successfully');

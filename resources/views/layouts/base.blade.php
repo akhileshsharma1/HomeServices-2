@@ -39,7 +39,7 @@
             display: block;
         }
         .navbar {
-            background-color: black;
+            background-color: #162926;
             width: 100vw;
             padding: 10px 22px;
         }
@@ -68,7 +68,47 @@
             transform: translate(-50%, -50%);
             transition: transform 0.3s ease, opacity 0.1s;
         }
+        .Account_admin {
+    position: relative;
+}
 
+.options {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.Account_admin:hover .options,
+.options:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.form-box.signup.show-error {
+    display: block;
+}
+
+
+
+.form-box.signup .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-box.signup .input-field.error input {
+    border-color: red;
+}
+.input-field.error input {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
     </style>
 </head>
 <body>
@@ -102,18 +142,21 @@
             </div>  
                         <div class="form-content">
                 <h2>LOGIN</h2>
-                @if ($errors->has('email') || $errors->has('password'))
-                        <span class="error">{{ $errors->first('email') ?: $errors->first('password') }}</span>
-                    @endif
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
-                    <div class="input-field">
+                    <div class="input-field @error('email') error @enderror">
                         <input type="text" name="email" required>
                         <label>Email</label>
-                    </div>
-                    <div class="input-field">
+                        @error('email')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div> 
+                    <div class="input-field @error('password') error @enderror">
                         <input type="password" name="password" required>
                         <label>Password</label>
+                            @error('password')
+                                <span class="error-message">{{ $message }}</span>
+                            @enderror
                     </div>
                   
                     <a href="#" class="forgot-pass">Forgot Password?</a>
@@ -131,51 +174,57 @@
                 <p>To become part of our community, please sign up  using personal information</p>
             </div>  
             <div class="form-content">
-                <h2>SIGNUP</h2>
-                
-                <form action="{{ route('register') }}" method="POST">
-                    @csrf
-                    <div class="input-field">
-                        <input type="text" name="name" required>
-                        <label>Enter your name</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
-                        <label>Enter your email</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" name="password" required>
-                        <label>Create password</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" name="password_confirmation" required>
-                        <label>Confirm password</label>
-                        @error('password')
-                          <span class="error">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-field">
-                        <select name="registeras" id="register" required>
-                            <option value="CST">Customer</option>
-                            <option value="SVP">Service Provider/Worker</option>
-                        </select>
-                    </div>
-                    <div class="policy-text">
-                        <input type="checkbox" id="policy" required>
-                        <label for="policy"></label>
-                        I agree to the <a href="#"> Terms & Conditions</a>
-                    </div>
-                    <a href="#" class="forgot-pass">Forgot Password?</a>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <div class="bottom-link">
-                    Already have an account?
-                <a href="#" id="login-link">Login</a>
-                </div>
-                
-
-            </div>
+    <h2>SIGNUP</h2>
+    <form action="{{ route('register') }}" method="POST">
+        @csrf
+        <div class="input-field @error('name') error @enderror">
+            <input type="text" name="name" required>
+            <label>Enter your name</label>
+            @error('name')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
         </div>
+        <div class="input-field @error('email') error @enderror">
+            <input type="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            <label>Enter your email</label>
+            @error('email')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-field @error('password') error @enderror">
+            <input type="password" name="password" required>
+            <label>Create password</label>
+            @error('password')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-field @error('password_confirmation') error @enderror">
+            <input type="password" name="password_confirmation" required>
+            <label>Confirm password</label>
+            @error('password_confirmation')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="input-field">
+            <select name="registeras" id="register" required>
+                <option value="CST">Customer</option>
+                <option value="SVP">Service Provider/Worker</option>
+            </select>
+        </div>
+        <div class="policy-text">
+            <input type="checkbox" id="policy" required>
+            <label for="policy"></label>
+            I agree to the <a href="#"> Terms & Conditions</a>
+        </div>
+        <a href="#" class="forgot-pass">Forgot Password?</a>
+        <button type="submit">Sign Up</button>
+    </form>
+    <div class="bottom-link">
+        Already have an account?
+        <a href="#" id="login-link">Login</a>
+    </div>
+</div>
+
     </div>
 </div>
 
@@ -193,12 +242,11 @@
                         
                         <div class="options">
 
-                            <ul class="drop-down one-column hover-fade" style="list-style: none; position:absolute; top:70% display:block;">
+                            <ul class="drop-down one-column hover-fade" style="list-style: none; top:70% display:block;">
                                 <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                                 <li><a href="{{route('admin.service_categories')}}">Service Categories</a></li>
                                 <li><a href="{{route('admin.all_services')}}">All Services</a></li>
-                                <!-- <li><a href="{{route('admin.users')}}">Users</a></li> -->
-                                <!-- <li><a href="{{ route('admin.service_providers')}}">All Service Providers</a></li> -->
+                                <li><a href="{{route('admin.bookings')}}">Bookings</a></li>
                                 <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                             </ul>
                         </div>
@@ -206,18 +254,27 @@
                 
                 </div>
                @elseif(Auth::user()->utype === 'SVP')
-               <li class="login-btn" style="list-style: none;">My Account(Service Provider)</li>
+               <div class = "Account_admin">
+               <div class="login-btn" style="list-style: none;" id = "akhilesh">My Account(Service Provider)</div>
+               <div class="options">
                   <ul class="drop-down one-column hover-fade" style="list-style: none;">
                     <li><a href="{{route('sprovider.dashboard')}}">Dashboard</a></li>
                     <li><a href="{{route('sprovider.profile')}}">Profile</a></li>
                     <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                   </ul>
+                </div>
+                </div>
                 @else   
-                <li class="login-btn" style="list-style: none; ">My Account(Customer)</li>
+                <div class = "Account_admin">
+                <div class="login-btn" style="list-style: none;" id = "akhilesh">My Account(Customer)</div>
+                <div class="options">
                   <ul class="drop-down one-column hover-fade" style="list-style: none;">
+                  <li><a href="{{route('customer.dashboard')}}">Dashboard</a></li>
                     <li><a href="{{route('customer.profile')}}">Profile</a></li>
                     <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                   </ul>
+                </div>
+                </div>
             @endif
             <form method="POST" id="logout-form" action="{{route('logout')}}">
                 @csrf

@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->unsignedBigInteger('service_category_id');
             $table->string('service_locations')->nullable();
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('service_category_id')->references('id')->on('service_categories')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

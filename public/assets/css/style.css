@@ -9,10 +9,16 @@ body{
     width: 100%;
     height: 100vh;
     background: rgb(2,0,36);
-    background: #0abf95;
+    /* background: #cfc6ca; */
+    /* background: #b0a36e; */
+    /* background: linear-gradient(to left, #524ec8, #85883f); */
+    background-image: linear-gradient(to right, #4CAF50, #a6f4cc);
+    /* background-image: linear-gradient(to right, #2196F3, #FFF); */
+    /* background-image: linear-gradient(to bottom, #9C27B0, #FFF); */
+    /* background-image: linear-gradient(to top right, #FF9800, #FFF); */
+    /* background-image: linear-gradient(to bottom left, #009688, #FFF); */
+    /* background-image: linear-gradient(to bottom right, #F44336, #FFF); */
 }
-
-
 .header1{
     position: fixed;
     width: 100%;
@@ -41,10 +47,10 @@ body{
     }
     .first2{
         margin-left: 6%;
-        margin-top: 10%;
+        margin-top: 12%;
         color: aliceblue;
-        position: absolute;
-        transform: translateY(-5%);
+        /* position: absolute; */
+        /* transform: translateY(-5%);*/
        }
        .first2 h1{
         font-size: 50px;
@@ -120,6 +126,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background:#162926;
 }
 
 .navbar .menu-btn{
@@ -316,13 +323,13 @@ body{
 }
 
 .login .form-details{
-    background-image: url("{{ asset('assets/images/homeservice1.png') }}");   
+    background-image: url('/images/imagee.jpg');
      background-size: cover;
     background-position: center;
 }
 
 .signup .form-details{
-    background: url('image2.jpg');
+    background: url('/images/imagee1.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -405,8 +412,9 @@ form .input-field label{
 }
 .slideshow-container {
     max-width: 1000px;
-    position: relative;
-    margin: auto;
+    /* position: relative; */
+    margin-top: -530px;
+    margin-right: 15px;
 }
 
 .mySlides {
