@@ -17,7 +17,7 @@ body{
     /* background-image: linear-gradient(to bottom, #9C27B0, #FFF); */
     /* background-image: linear-gradient(to top right, #FF9800, #FFF); */
     /* background-image: linear-gradient(to bottom left, #009688, #FFF); */
-    /* background-image: linear-gradient(to bottom right, #F44336, #FFF); */
+    /* background-image: linear-gradient(to bottom left, #F44336, #FFF); */
 }
 .header1{
     position: fixed;

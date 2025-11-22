@@ -20,12 +20,12 @@ class CreateBookingsTable extends Migration{
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->string('service_name')->default('Bookings');
+            
             $table->date('date');
             $table->time('time');
             $table->string('status')->default('Pending');
             $table->timestamps();
             $table->unsignedBigInteger('service_provider_id')->nullable();
-            $table->string('service_provider_name')->nullable();
             
             $table->foreign('service_provider_id')->references('id')->on('service_providers')->onDelete('set null');
         });

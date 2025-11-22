@@ -123,7 +123,7 @@ class AdminEditServiceComponent extends Component
         }    
 
         if($this->image){
-            unlink('images/services'.'/'.$service->image);
+            unlink(public_path('images/services/' . $service->image));
             $imageName2 = Carbon::now()->timestamp . '.' . $this->newimage->extension();
             $this->image->storeAs('services',$imageName2);
             $service->image = $imageName2;

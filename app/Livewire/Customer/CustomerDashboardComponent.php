@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CustomerDashboardComponent extends Component
 {
     public $bookings;
+    public $declaration;
     public function mount()
     {
         $user_id = Auth::id();

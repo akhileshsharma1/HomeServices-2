@@ -172,7 +172,7 @@
                                             @endif
                                             <tr>
                                                 <td>Total</td>
-                                                <td><span>Rs</span> {{$total}}</td>
+                                                <td><span>$</span> {{$total}}</td>
                                             </tr>
                                         </table>
                                     </div>

@@ -20,8 +20,12 @@ class ChangeLocationComponent extends Component
         session()->put('country', $this->country);
         session()->put('longitude', $this->longitude);
         session()->put('latitude', $this->latitude);
+
         session()->flash('message', 'Location has been changed');
+
         $this->emitTo(LocationComponent::class, 'refreshComponent');
+        
+        // $this->emitTo(\App\Livewire\LocationComponent::class, 'refreshComponent');
     }
 
     public function render()

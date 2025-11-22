@@ -53,11 +53,47 @@
             color: #fff;
         }
 
+        .action-buttons button.send {
+            background-color: #007bff;
+            color: #fff;
+        }
+
         .action-buttons button:hover {
             filter: brightness(1.1);
         }
+        .declaration-input {
+        width: 200px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .update-button,
+    .send-button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .update-button {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .send-button {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .update-button:hover,
+    .send-button:hover {
+        filter: brightness(1.1);
+    }
     </style>
-<div class="dashboard-container">
+    <div class="dashboard-container">
         <h2 class="dashboard-title-sp">Service Provider Dashboard</h2>
         <table class="service-table">
             <thead>
@@ -68,28 +104,48 @@
                     <th>Date</th>
                     <th>Time</th>
                     <th>Action</th>
+                    <th>Declaration</th>
                 </tr>
             </thead>
             <tbody>
-                @if($bookings)
-                @foreach ($bookings as $booking)
-                        <tr>
-                            <td>{{ $booking->service_name }}</td>
-                            <td>{{ $booking->name }}</td>
-                            <td>{{ $booking->description }}</td>
-                            <td>{{ $booking->date }}</td>
-                            <td>{{ $booking->time }}</td>
-                            <td class="action-buttons">
-                                @if ($booking->status == 'Pending')
-                                    <button class="accept" wire:click="acceptBooking({{ $booking->id }})">Accept</button>
-                                    <button class="reject" wire:click="rejectBooking({{ $booking->id }})">Reject</button>
-                                @else
-                                    {{ $booking->status }}
-                                @endif
-                            </td>
-                        </tr>
-                @endforeach
+            @if($bookings)
+    @foreach ($bookings as $booking)
+        @php
+            $sentBookingId = null; // Initialize the variable to store the bookingId for which declaration was sent
+            if ($declarationSent) {
+                $sentBookingId = array_key_exists($booking->id, $declaration) ? $booking->id : null;
+            }
+        @endphp
+        <tr>
+            <td>{{ $booking->service_name }}</td>
+            <td>{{ $booking->name }}</td>
+            <td>{{ $booking->description }}</td>
+            <td>{{ $booking->date }}</td>
+            <td>{{ $booking->time }}</td>
+            <td class="action-buttons">
+                @if ($booking->status == 'Pending')
+                    <button class="accept" wire:click="acceptBooking({{ $booking->id }})">Accept</button>
+                    <button class="reject" wire:click="rejectBooking({{ $booking->id }})">Reject</button>
+                @else
+                    {{ $booking->status }}
                 @endif
+            </td>
+            <td>
+    @if($declarationSent && $sentBookingId == $booking->id)
+        <div class="update-declaration">
+            <input type="text" wire:model="declaration.{{ $booking->id }}" placeholder="Enter updated declaration" class="declaration-input">
+            <button class="send update-button" wire:click="updateDeclaration({{ $booking->id }})">Update</button>
+        </div>
+    @else
+        <div class="send-declaration">
+            <input type="text" wire:model="declaration.{{ $booking->id }}" placeholder="Enter declaration" class="declaration-input">
+            <button class="send send-button" wire:click="sendDescription({{ $booking->id }})">Send</button>
+        </div>
+    @endif
+</td>
+        </tr>
+    @endforeach
+@endif
             </tbody>
         </table>
     </div>

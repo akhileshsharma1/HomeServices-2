@@ -56,32 +56,65 @@
         .action-buttons button:hover {
             filter: brightness(1.1);
         }
+        .paypal-button {
+        padding: 10px 20px;
+        background-color: #0070ba;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .paypal-button:hover {
+        background-color: #005ea6;
+    }
     </style>
 <div class="dashboard-container">
-        <h2 class="dashboard-title-sp">Service Provider Dashboard</h2>
-        <table class="service-table">
-            <thead>
-                <tr>
-                    <th>Service Name</th>
-                    <th>Customer</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h2 class="dashboard-title-sp">Service Provider Dashboard</h2>
+    <table class="service-table">
+        <thead>
+            <tr>
+                <th>Service Name</th>
+                <th>Customer</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Declaration</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody>
             @foreach ($bookings as $booking)
-                    <tr>
-                        <td>{{ $booking->service_name }}</td>
-                        <td>{{ $booking->name }}</td>
-                        <td>{{ $booking->description }}</td>
-                        <td>{{ $booking->date }}</td>
-                        <td>{{ $booking->time }}</td>
-                        <td>{{ $booking->status }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+            <tr>
+                <td>{{ $booking->service_name }}</td>
+                <td>{{ $booking->name }}</td>
+                <td>{{ $booking->description }}</td>
+                <td>{{ $booking->date }}</td>
+                <td>{{ $booking->time }}</td>
+                <td>{{ $booking->status }}</td>
+                <td>{{ $booking->Declaration }}</td>
+                <td>
+                @if ($booking->status == 'Accepted')
+                        @php
+                            $servicePrice = $booking->service->price - $booking->service->discount; 
+                        @endphp
+                        <form action="{{ route('payment') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="amount" value="{{ $servicePrice }}">
+                            <button type="submit" class="paypal-button">Pay</button>
+                        </form>
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+
+
+
 </div>

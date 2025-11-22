@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PaymentController;
 use App\Livewire\ServiceCategoriesComponent;
 use App\Livewire\ServicesByCategoryComponent;
 use App\Livewire\ServiceDetailsComponent;
@@ -58,11 +59,16 @@ use App\Http\Controllers\BookingController;
 // Route::get('/booking', BookingForm::class)->name('booking.form');
 Route::post('/booking', [BookingController::class, 'bookService'])->name('booking.book');
 
+//Payment
+Route::post('pay',[PaymentController::class, 'pay'])->name('payment');
+Route::get('success',[PaymentController::class, 'success']);
+Route::get('error',[PaymentController::class, 'error']);
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/home-page', HomeComponent::class)->name('homepage');
+
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/service-categories',ServiceCategoriesComponent::class)->name('home.service_categories');
 Route::get('/{category_slug}/services', ServicesByCategoryComponent::class)->name('home.services_by_category');

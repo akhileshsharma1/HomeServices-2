@@ -1,16 +1,17 @@
 <?php
 
-
-
 namespace App\Livewire\Sprovider;
 
 use Livewire\Component;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 
+
 class SproviderDashboardComponent extends Component
 {
     public $bookings;
+    public $declaration = [];
+    public $declarationSent = false;
 
     public function mount()
     {
@@ -22,7 +23,7 @@ class SproviderDashboardComponent extends Component
         $booking = Booking::findOrFail($bookingId);
         $booking->status = 'Accepted';
         $booking->save();
-        $this->loadBookings(); // Refresh the bookings
+        $this->loadBookings(); 
     }
 
     public function rejectBooking($bookingId)
@@ -30,17 +31,46 @@ class SproviderDashboardComponent extends Component
         $booking = Booking::findOrFail($bookingId);
         $booking->status = 'Rejected';
         $booking->save();
-        $this->loadBookings(); // Refresh the bookings
+        $this->loadBookings(); 
     }
 
     public function loadBookings()
     {
-        // Fetch the bookings based on the currently logged-in user's service provider ID
         $this->bookings = Booking::whereHas('serviceProvider', function ($query) {
-            // Filter the bookings where the service provider ID matches the ID of the service provider
-            // associated with the currently logged-in user
             $query->where('user_id', Auth::id());
         })->get();
+    }
+
+    public function sendDescription($bookingId)
+    {
+        $booking = Booking::find($bookingId);
+        if ($booking) {
+            if (!isset($this->declaration[$bookingId])) {
+                $this->declaration[$bookingId] = '';
+            }
+            $booking->declaration = $this->declaration[$bookingId];
+            $booking->save();
+            $this->declaration[$bookingId] = '';
+            $this->declarationSent = true;
+        } else {
+            session()->flash('error', 'Booking not found!');
+        }
+    }
+
+    public function updateDeclaration($bookingId)
+    {
+        $booking = Booking::find($bookingId);
+        if ($booking) {
+            if (!isset($this->declaration[$bookingId])) {
+                $this->declaration[$bookingId] = '';
+            }
+            $booking->declaration = $this->declaration[$bookingId];
+            $booking->save();
+            $this->declaration[$bookingId] = '';
+            session()->flash('message', 'Declaration updated successfully!');
+        } else {
+            session()->flash('error', 'Booking not found!');
+        }
     }
 
     public function render()

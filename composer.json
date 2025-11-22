@@ -11,9 +11,12 @@
         "laravel/jetstream": "^4.3",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0"
+        "league/omnipay": "^3.2",
+        "livewire/livewire": "^3.0",
+        "omnipay/paypal": "^3.0"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

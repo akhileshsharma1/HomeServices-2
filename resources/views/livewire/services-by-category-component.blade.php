@@ -40,7 +40,7 @@
                                     <hr class="separator">
                                     <p>{{ $service->tagline }}</p> 
                                     <div class="content-btn"></div>
-                                    <div class="price"></span><b>From </b> Rs {{ $service->price }}</div> 
+                                    <div class="price"></span><b>From </b> $ {{ $service->price }}</div> 
                             </a>
                         </div>
                         @endforeach
